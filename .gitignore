@@ -1,0 +1,6 @@
+/vendor
+!/vendor/dingo/Provider/JWT.php
+!/vendor/tymon/jwt-auth/src/JWTAuth.php
+.env
+.idea
+.env.testing

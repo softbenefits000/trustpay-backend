@@ -1,0 +1,2520 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "TrustPay Test Api",
+        "version": "1.0.0"
+    },
+    "basePath": "/apitest",
+    "paths": {
+        "/customer/login": {
+            "post": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Customer Login",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer Details [CustomerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Password or PIN",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: customer_authenicated, data: [CustomerObject]}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/login": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Seller Login",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Seller Details [SellerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Password or PIN",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: seller_authenicated, data: [SellerObject]}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliverymen/login": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Delivery Man Login",
+                "parameters": [
+                    {
+                        "name": "deliverymen",
+                        "in": "body",
+                        "description": "Delivery Man Details [SellerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Password or PIN",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: deliveryman_authenicated, data: [SellerObject]}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/changePassword": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Change Seller Password",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Change Seller password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "current_password": {
+                                    "description": "Seller Current Password",
+                                    "type": "string"
+                                },
+                                "new_password": {
+                                    "description": "Seller New Password",
+                                    "type": "string"
+                                },
+                                "new_password_confirmation": {
+                                    "description": "Seller New Password Confirmation",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: password_updated]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: parameters missing or required/record_not_found/password_does_not_match}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]/role_not_defined}"
+                    }
+                }
+            }
+        },
+        "/customer/changePassword": {
+            "post": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Change Customer Password",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Change customer password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "current_password": {
+                                    "description": "Customer Current Password",
+                                    "type": "string"
+                                },
+                                "new_password": {
+                                    "description": "Customer New Password",
+                                    "type": "string"
+                                },
+                                "new_password_confirmation": {
+                                    "description": "Customer New Password Confirmation",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: password_updated]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: parameters missing or required/record_not_found/password_does_not_match}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]/role_not_defined}"
+                    }
+                }
+            }
+        },
+        "/deliveryman/changePassword": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Change Delivery Man Password",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Change deliveryman password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "current_password": {
+                                    "description": "deliveryman Current Password",
+                                    "type": "string"
+                                },
+                                "new_password": {
+                                    "description": "deliveryman New Password",
+                                    "type": "string"
+                                },
+                                "new_password_confirmation": {
+                                    "description": "deliveryman New Password Confirmation",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: password_updated]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: parameters missing or required/record_not_found/password_does_not_match}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]/role_not_defined/unauthorized_access}"
+                    }
+                }
+            }
+        },
+        "/customer/forgot": {
+            "post": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Customer Forgot Password",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer email to get email with reset token",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: token_generated, data: [token: reset_token_key ]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: user_not_found}"
+                    }
+                }
+            }
+        },
+        "/seller/forgot": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Seller Forgot Password",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Seller email to get email with reset token",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: token_generated, data: [token: reset_token_key ]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: user_not_found}"
+                    }
+                }
+            }
+        },
+        "/deliverymen/forgot": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Delivery Man Login",
+                "parameters": [
+                    {
+                        "name": "deliverymen",
+                        "in": "body",
+                        "description": "Deliveryman email to get email with reset token",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: token_generated, data: [token: reset_token_key ]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: user_not_found}"
+                    }
+                }
+            }
+        },
+        "/customer/forgot/reset": {
+            "post": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Customer Reset Forgot Password",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer email, new password and reset token to reset password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "New Password",
+                                    "type": "string"
+                                },
+                                "password_confirmation": {
+                                    "description": "Confirm New Password",
+                                    "type": "string"
+                                },
+                                "token": {
+                                    "description": "Reset Token from email/forgot response",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: reset_successful}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: reset_failed}"
+                    }
+                }
+            }
+        },
+        "/seller/forgot/reset": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Seller Reset Forgot Password",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Seller email, new password and reset token to reset password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "New Password",
+                                    "type": "string"
+                                },
+                                "password_confirmation": {
+                                    "description": "Confirm New Password",
+                                    "type": "string"
+                                },
+                                "token": {
+                                    "description": "Reset Token from email/forgot response",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: reset_successful}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: reset_failed"
+                    }
+                }
+            }
+        },
+        "/deliverymen/forgot/reset": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Delivery Man Reset Forgot Password",
+                "parameters": [
+                    {
+                        "name": "deliverymen",
+                        "in": "body",
+                        "description": "Deliveryman email, new password and reset token to reset password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "New Password",
+                                    "type": "string"
+                                },
+                                "password_confirmation": {
+                                    "description": "Confirm New Password",
+                                    "type": "string"
+                                },
+                                "token": {
+                                    "description": "Reset Token from email/forgot response",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: reset_successful}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: reset_failed}"
+                    }
+                }
+            }
+        },
+        "/customer/register": {
+            "post": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Create New Customer",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer Details [CustomerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "firstname": {
+                                    "description": "Customer Firstname",
+                                    "type": "string"
+                                },
+                                "lastname": {
+                                    "description": "Customer Lastname",
+                                    "type": "string"
+                                },
+                                "phone_number": {
+                                    "description": "Customer Phone Number",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Customer Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Customer Password",
+                                    "type": "string"
+                                },
+                                "password_confirmation": {
+                                    "description": "Confirm Password",
+                                    "type": "string"
+                                },
+                                "PIN": {
+                                    "description": "Customer PIN",
+                                    "type": "integer"
+                                },
+                                "PIN_confirmation": {
+                                    "description": "Confirm Customer PIN",
+                                    "type": "integer"
+                                },
+                                "ip_address": {
+                                    "description": "Customer IP Address",
+                                    "type": "string"
+                                },
+                                "device_type": {
+                                    "description": "Customer Device Type",
+                                    "type": "string"
+                                },
+                                "device_version": {
+                                    "description": "Customer Device Version",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status=success, message=customer_registered}"
+                    },
+                    "201": {
+                        "description": "{status=error, message=messageText}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/confirmation/{token}": {
+            "get": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Customer Email Confirmation",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Token from mail sent to user",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: customer_verified}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: invalid_token}"
+                    }
+                }
+            }
+        },
+        "/customer": {
+            "get": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Get Authenticated Customer Details",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: customer_details, data: [CustomerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/update": {
+            "put": {
+                "tags": [
+                    "Buyer Module"
+                ],
+                "summary": "Update/Edit Customer Details",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer Details [CustomerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "firstname": {
+                                    "description": "Customer Firstname",
+                                    "type": "string"
+                                },
+                                "lastname": {
+                                    "description": "Customer Lastname",
+                                    "type": "string"
+                                },
+                                "phone_number": {
+                                    "description": "Customer Phone Number",
+                                    "type": "string"
+                                },
+                                "email_address": {
+                                    "description": "Customer Email Address",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: customer_updated, data: [CustomerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: some parameters missing or required/failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/orders": {
+            "get": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Get Orders for Authenticated Customer",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: customer_orders, data: [TransactionObject + SellerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/order": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Get Single Order Details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "body",
+                        "description": "Customer id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Order Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "status: success, message:order_details, data: [TransactionObject"
+                    },
+                    "201": {
+                        "description": "status: error, message:Missing parameter Required / Failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/order/disputes": {
+            "get": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Get All Disputes for Authenticated Customer",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message:customer_disputes, data: [RefundRequestObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Could not Get Disputes}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/order/dispute": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Get Single Dispute Details",
+                "parameters": [
+                    {
+                        "name": "dispute_id",
+                        "in": "body",
+                        "description": "Dispute Unique Id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "dispute_id": {
+                                    "description": "Dispute Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message:dispute_details, data: [RefundRequestObject + TransactionObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message:Some Missing Parameters are Required / Failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/order/dispute/raise": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Raise a  Dispute ",
+                "parameters": [
+                    {
+                        "name": "dispute",
+                        "in": "body",
+                        "description": "Dispute Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "transaction_id": {
+                                    "description": "Target Transaction Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "status": {
+                                    "description": "Status of the Dispute 0 - Canceled 1 - Pending/Processing 2 - Solved ",
+                                    "type": "string"
+                                },
+                                "reason": {
+                                    "description": "Reason for Dispute or refund request",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: new_dispute, data: [DisputeObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Missing Parameters are Required / failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/customer/order/dispute/cancel": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Cancel a Dispute ",
+                "parameters": [
+                    {
+                        "name": "dispute_id",
+                        "in": "body",
+                        "description": "Dispute Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "dispute_id": {
+                                    "description": "Dispute Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: cancel_dispute, data: [DisputeObject]}"
+                    },
+                    "201": {
+                        "description": "{status success, message: failed})"
+                    }
+                }
+            }
+        },
+        "/customer/purchase": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Create a Purchase Transaction",
+                "parameters": [
+                    {
+                        "name": "purchase",
+                        "in": "body",
+                        "description": "Purchase Details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: new_transaction, data: [TransactionObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Parameters Missing are Required / Failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliveryman/create": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Create New DeliveryMan",
+                "parameters": [
+                    {
+                        "name": "deliveryMan",
+                        "in": "body",
+                        "description": "DeliveryMan Details [DeliveryManObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "type": {
+                                    "description": "DeliveryMan Type",
+                                    "type": "integer"
+                                },
+                                "business_name": {
+                                    "description": "Delivery Man Name",
+                                    "type": "string"
+                                },
+                                "business_email": {
+                                    "description": "Delivery Man Email",
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                "business_address": {
+                                    "description": "Delivery Man Address",
+                                    "type": "string"
+                                },
+                                "business_state": {
+                                    "description": "Delivery Man State",
+                                    "type": "string"
+                                },
+                                "business_city": {
+                                    "description": "Delivery Man City",
+                                    "type": "string"
+                                },
+                                "business_country": {
+                                    "description": "Delivery Man Country",
+                                    "type": "string"
+                                },
+                                "business_phone": {
+                                    "description": "Delivery Man Phone",
+                                    "type": "string"
+                                },
+                                "siteURL": {
+                                    "description": "siteURL",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status=success, message=delivery_man_registered, data: [DeliveryManObject]}"
+                    },
+                    "201": {
+                        "description": "{status=error, message=failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliveryman/update/{id}": {
+            "put": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Update Delivery Man",
+                "parameters": [
+                    {
+                        "name": "deliveryMan",
+                        "in": "body",
+                        "description": "eliveryMan Details [DeliveryMan]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "type": {
+                                    "description": "DeliveryMan Type",
+                                    "type": "integer"
+                                },
+                                "business_name": {
+                                    "description": "Delivery Man Name",
+                                    "type": "string"
+                                },
+                                "business_email": {
+                                    "description": "Delivery Man Email",
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                "business_address": {
+                                    "description": "Delivery Man Address",
+                                    "type": "string"
+                                },
+                                "business_city": {
+                                    "description": "Delivery Man City",
+                                    "type": "string"
+                                },
+                                "business_country": {
+                                    "description": "Delivery Man Country",
+                                    "type": "string"
+                                },
+                                "business_phone": {
+                                    "description": "Delivery Man Phone",
+                                    "type": "string"
+                                },
+                                "siteURL": {
+                                    "description": "siteURL",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status=success, message=updated_successfully, data: [DeliveryManObject]}"
+                    },
+                    "201": {
+                        "description": "{status=error, message=Some Missing Parameters are Required failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliveryman/view": {
+            "get": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Get Delivery Men Registered to Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: delivery_men, data: [DeliveryManObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliveryman/viewDetails": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Single Delivery Man Details",
+                "parameters": [
+                    {
+                        "name": "deliveryMan",
+                        "in": "body",
+                        "description": "eliveryMan Details [DeliveryMan]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "delivery_man_id": {
+                                    "description": "DeliveryMan Unique ID",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: delivery_men, data: [DeliveryManObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliveryman/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Delete Delivery Men Registered to Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: delivery_men_deleted, data: [DeliveryManObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Record Not Found/ failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliverymantype/create": {
+            "post": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Create New DeliveryManType",
+                "parameters": [
+                    {
+                        "name": "deliveryMan",
+                        "in": "body",
+                        "description": "DeliveryMan Details [DeliveryManObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "DeliveryMan Type Title",
+                                    "type": "integer"
+                                },
+                                "description": {
+                                    "description": "Delivery Man Type Description",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status=success, message=delivery_man_type_registered, data: [DeliveryManTypeObject]}"
+                    },
+                    "201": {
+                        "description": "{status=error, message=failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliverymantype/view": {
+            "get": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Get Delivery Men Types",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: delivery_men_types, data: [DeliveryManTypeObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed"
+                    }
+                }
+            }
+        },
+        "/deliverymantype/update/{id}": {
+            "put": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Update DeliveryManType",
+                "parameters": [
+                    {
+                        "name": "deliveryManType",
+                        "in": "body",
+                        "description": "DeliveryManType Details [DeliveryManObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "DeliveryMan Type Title",
+                                    "type": "integer"
+                                },
+                                "description": {
+                                    "description": "Delivery Man Type Description",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: updated_successfully, data: [DeliveryManTypeObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Missing Parameters/ failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/deliverymantype/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "DeliveryMan Module"
+                ],
+                "summary": "Delete Delivery Men Types",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: deliverymanType_deleted, data: [DeliveryManTypeObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Could Not find Record / failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/create": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Create New Transaction/Order",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details [CustomerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "type": {
+                                    "description": "Transaction Type",
+                                    "type": "integer"
+                                },
+                                "delivery_date": {
+                                    "description": "Delivery Date",
+                                    "type": "date"
+                                },
+                                "amount_payed": {
+                                    "description": "Amount to Be Payed in Nigerian Kobo (Please Note)",
+                                    "type": "integer",
+                                    "format": "date"
+                                },
+                                "customer_id": {
+                                    "description": "Unique Id of Buyer",
+                                    "type": "integer"
+                                },
+                                "beneficiary_merchant_id": {
+                                    "description": "Unique Id of Seller",
+                                    "type": "integer"
+                                },
+                                "delivery_location": {
+                                    "description": "Delivery Location",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message=order_created, data:[OrderObject]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed_order_creation/failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/pay": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Get Payment Authorization for a Transaction/Order",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "customer_id": {
+                                    "description": "Unique Id of Buyer",
+                                    "type": "integer"
+                                },
+                                "order_code": {
+                                    "description": "Transaction Order Code",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:payment_authorization data:[PayStack Authorization Response]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/payment/callback": {
+            "get": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "PayStack Callback URL. Do not Implement Apart from Paystack Platform.\n     *      Please call /order/view or /payment/verify to View Transaction Details",
+                "responses": {
+                    "200": {
+                        "description": "{status:-, message:- data:-}"
+                    }
+                }
+            }
+        },
+        "/order/payment/verify": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Verify Transaction/Order",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "order_code": {
+                                    "description": "Transaction Order Code",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:verification data:[PayStack Verification Response]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed/invalid_details}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/view": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "View Transaction/Order.",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "order_code": {
+                                    "description": "Transaction Order Code",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:order_details data:[TransactionObject]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed/invalid_order_code}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/setStatus": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Set Transaction/Order Status. Use /order/allStatus to get all Transaction Statuses (ID)",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "order_code": {
+                                    "description": "Transaction Order Code",
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "description": "Transaction Status ID. Use /order/allStatus to get all Transaction Statuses",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:status_changed data:-}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed/invalid_order_code/invalid_status}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/setDelivery": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Set Transaction/Order Delivery Status. ",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "order_code": {
+                                    "description": "Transaction Order Code",
+                                    "type": "string"
+                                },
+                                "delivery_status": {
+                                    "description": "Transaction Status ID. 0 - Not Delivered or 1 - Delivered",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:delivery_status_changed data:-}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed/invalid_order_code/invalid_status}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/allStatus": {
+            "get": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Get All Transaction/Order Statuses. Use /order/allStatus to get all Transaction Statuses (ID)",
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:all_status data: [TransactionStatusObject]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: failed}"
+                    }
+                }
+            }
+        },
+        "/order/update": {
+            "put": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Update Transaction",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "type": {
+                                    "description": "Transaction  Type",
+                                    "type": "integer"
+                                },
+                                "order_code": {
+                                    "description": "Transaction Order Code.",
+                                    "type": "string"
+                                },
+                                "delivery_date": {
+                                    "description": "Transaction Delivery Date",
+                                    "type": "date"
+                                },
+                                "delivery_location": {
+                                    "description": "Transaction Delivery Location.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:updated data:[TransactionObject]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed/invalid_order_code}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/order/assign": {
+            "post": {
+                "tags": [
+                    "Order Module"
+                ],
+                "summary": "Refresh Order Code for a Transaction/Order. This Should only be used if Paystack gives a duplicate reference message for the current Order Code for a Transaction. Use with Caution.",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details ",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "customer_id": {
+                                    "description": "Unique Id of Buyer",
+                                    "type": "integer"
+                                },
+                                "order_code": {
+                                    "description": "Current Transaction Order Code",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status:success, message:new_order_code_assigned data:[TransactionObject]}"
+                    },
+                    "201": {
+                        "description": "{status:error, message: Missing Parameters Required/failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/register": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Create New Seller",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Seller Details [SellerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "firstname": {
+                                    "description": "Seller Firstname",
+                                    "type": "string"
+                                },
+                                "lastname": {
+                                    "description": "Seller Lastname",
+                                    "type": "string"
+                                },
+                                "phone_number": {
+                                    "description": "Seller Phone Number",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Seller Email Address",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Seller Password",
+                                    "type": "string"
+                                },
+                                "password_confirmation": {
+                                    "description": "Seller Password Confirmation",
+                                    "type": "string"
+                                },
+                                "PIN": {
+                                    "description": "Seller's PIN",
+                                    "type": "integer"
+                                },
+                                "PIN_confirmation": {
+                                    "description": "Seller's PIN Confirmation",
+                                    "type": "integer"
+                                },
+                                "ip_address": {
+                                    "description": "Customer IP Address",
+                                    "type": "string"
+                                },
+                                "device_type": {
+                                    "description": "Customer Device Type",
+                                    "type": "string"
+                                },
+                                "device_version": {
+                                    "description": "Customer Device Version",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status=success, message=customer_registered}"
+                    },
+                    "201": {
+                        "description": "{status=error, message=errorText}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/confirmation/{token}": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Seller Email Confirmation",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Token from mail sent to seller",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: seller_verified}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: invalid_token}"
+                    }
+                }
+            }
+        },
+        "/seller/account": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Authenticated Seller Account Details",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: seller_details, data: [sellerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: seller_not_found}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Authenticated Seller Details",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: seller_details, data: [sellerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: seller_not_found}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/business": {
+            "put": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Add Seller Business Information",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Seller Details [SellerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "is_marketplace": {
+                                    "description": "1 or 0 Is Seller A MarketPlace Admin ?",
+                                    "type": "integer"
+                                },
+                                "marketplace_child": {
+                                    "description": "MarketPlace Child/ Parent to",
+                                    "type": "string"
+                                },
+                                "business_name": {
+                                    "description": "Business Name",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "business_address": {
+                                    "description": "Business Address",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "business_address_2": {
+                                    "description": "Business Address 2",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "business_city": {
+                                    "description": "Business City",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "business_state": {
+                                    "description": "Business State",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "business_country": {
+                                    "description": "Business State",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "business_email": {
+                                    "description": "Business Email",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "siteURL": {
+                                    "description": "Site URL",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "BVN": {
+                                    "description": "Bank Verification Number",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: updated_successfully, data: [sellerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters are required / seller_details_not_found/update_failed }"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/account/update": {
+            "put": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Update/Edit Seller Account Details",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "Seller Details [SellerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "firstname": {
+                                    "description": "Seller Firstname",
+                                    "type": "string"
+                                },
+                                "lastname": {
+                                    "description": "Seller Lastname",
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "description": "Seller Phone Number",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Seller Email Address",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: updated_successfully, data: [sellerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters are required / seller_details_not_found/update_failed }"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/verify": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Verify Seller BVN",
+                "parameters": [
+                    {
+                        "name": "seller",
+                        "in": "body",
+                        "description": "BVN [SellerObject]",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "bvn": {
+                                    "description": "Seller Bank Verification Number",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: verified, data: [sellerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters are required / seller_details_not_found/update_failed }"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/orders": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Orders for Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: orders, data: [TransactionObject + CustomerObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/order": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Details of a single Order.",
+                "parameters": [
+                    {
+                        "name": "order id",
+                        "in": "body",
+                        "description": "Order Unique Identifier",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Order Unique Identifier",
+                                    "type": "integer",
+                                    "format": "int11"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: order_details, data: [TransactionObject + [CustomerObject]]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameter Required /Failed }"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/order/disputes": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Disputes for Orders for Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: disputes, data: [RefundRequestObject + {TransactionObject}]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/order/dispute": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Single Dispute Details",
+                "parameters": [
+                    {
+                        "name": "dispute_id",
+                        "in": "body",
+                        "description": "Dispute Unique Id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "dispute_id": {
+                                    "description": "Dispute Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: disputes, data: [RefundRequestObject + {TransactionObject}]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message:Some Missing Parameters Required / Failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/order/dispute/raise": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Raise a  Dispute ",
+                "parameters": [
+                    {
+                        "name": "dispute",
+                        "in": "body",
+                        "description": "Dispute Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "transaction_id": {
+                                    "description": "Target Transaction Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "status": {
+                                    "description": "Status of the Dispute 0 - Canceled 1 - Pending/Processing 2 - Solved(Default = 1)",
+                                    "type": "string"
+                                },
+                                "reason": {
+                                    "description": "Reason for Dispute or refund request",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: new_dispute, data: [RefundRequestObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters are Required /Failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/order/dispute/cancel": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Cancel a  Dispute ",
+                "parameters": [
+                    {
+                        "name": "dispute",
+                        "in": "body",
+                        "description": "Dispute Unique Id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "dispute_id": {
+                                    "description": "Dispute Unique Id greater than 1",
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: cancel_dispute, data: [RefundRequestObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters Required/Failed }"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/payout/create": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Add a PayOut Account ",
+                "parameters": [
+                    {
+                        "name": "PayOut Details",
+                        "in": "body",
+                        "description": "Payout Account Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "bank_name": {
+                                    "description": "Bank Name of Payout Detail",
+                                    "type": "string"
+                                },
+                                "bank_account_name": {
+                                    "description": "Payout Bank Account Name",
+                                    "type": "string"
+                                },
+                                "bank_account_number": {
+                                    "description": "PayOut Bank Account Number",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: account_added, data: [AccountObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters Required/Failed }"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/payout/view": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "View PayOut Details of Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: account_details, data: [AccountObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/term/create": {
+            "post": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Create a Term",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "body",
+                        "description": "Term Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "body": {
+                                    "description": "Body of the Term",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "SLA": {
+                                    "description": "SLA",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "logistics_fee": {
+                                    "description": "Logistics Fee",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: new_term, data: [DeliveryTermObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters REquired /Failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/term/edit/{termId}": {
+            "put": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Update/Edit a Term",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "body",
+                        "description": "Term Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "body": {
+                                    "description": "Body of the Term",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "SLA": {
+                                    "description": "SLA",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                },
+                                "logistics_fee": {
+                                    "description": "Logistics Fee",
+                                    "type": "string",
+                                    "format": "varchar255"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: update_successfully, data: [DeliveryTermObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters Required /Update Failed, data: [DeliveryTermObject]}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/terms": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Terms by Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: seller_terms, data: [DeliveryTermObjects + {SellerObject}]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/order/assign": {
+            "post": {
+                "tags": [
+                    "Seller Module",
+                    "Order Module"
+                ],
+                "summary": "Assign a Delivery Man to an Order. Get DeliveryMen using /seller/deliverymen",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "body",
+                        "description": "Order Details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "order_id": {
+                                    "description": "Transaction Order Number/ID",
+                                    "type": "string",
+                                    "format": "varchar6"
+                                },
+                                "delivery_man_id": {
+                                    "description": "One of Seller Registered DeliveryMen Unique Id",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: deliveryman_assigned, data: [TransactionObject]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: Some Missing Parameters Required /Failed/Invalid Credentials}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        },
+        "/seller/deliverymen": {
+            "get": {
+                "tags": [
+                    "Seller Module"
+                ],
+                "summary": "Get Delivery Men of Authenticated Seller",
+                "responses": {
+                    "200": {
+                        "description": "{status: success, message: delivery_men, data: [DeliveryManObjects]}"
+                    },
+                    "201": {
+                        "description": "{status: error, message: No Record Found/Failed}"
+                    },
+                    "401": {
+                        "description": "{status: error, message: invalid token/token expired, debug: [DebugInfoObject]}"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Customer": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "firstname": {
+                    "description": "Customer Firstname",
+                    "type": "string"
+                },
+                "lastname": {
+                    "description": "Customer Lastname",
+                    "type": "string"
+                },
+                "phone_number": {
+                    "description": "Customer Phone Number",
+                    "type": "string"
+                },
+                "email_address": {
+                    "description": "Customer Email Address",
+                    "type": "string"
+                }
+            }
+        },
+        "DeliveryTerm": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "user_id": {
+                    "description": "Seller/Merchant Id",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "body": {
+                    "description": "Delivery Term Details",
+                    "type": "string"
+                },
+                "SLA": {
+                    "description": "SLA Details",
+                    "type": "string"
+                },
+                "logistics_fee": {
+                    "description": "Logistic Fee",
+                    "type": "string"
+                }
+            }
+        },
+        "Seller": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "is_marketplace": {
+                    "description": "If Seller is marketplace admin",
+                    "type": "integer"
+                },
+                "marketplace_child": {
+                    "description": "Marketplace admin parent Id",
+                    "type": "integer"
+                },
+                "business_name": {
+                    "description": "Seller Business Name",
+                    "type": "string"
+                },
+                "business_address": {
+                    "description": "Seller Business Address",
+                    "type": "string"
+                },
+                "business_address_2": {
+                    "description": "Seller Business Address Line 2",
+                    "type": "string"
+                },
+                "business_city": {
+                    "description": "Seller Business City",
+                    "type": "string"
+                },
+                "business_state": {
+                    "description": "Seller Business State",
+                    "type": "string"
+                },
+                "business_country": {
+                    "description": "Seller Business Country",
+                    "type": "string"
+                },
+                "siteURL": {
+                    "description": "Seller Website",
+                    "type": "string",
+                    "format": "http://"
+                }
+            }
+        },
+        "Transaction": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "type": {
+                    "description": "Transaction Type",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "customer_id": {
+                    "description": "Customer Unique Id",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "beneficiary_merchant_id": {
+                    "description": "Beneficiary Merchant Unique Id",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "payment_reference": {
+                    "description": "Payment Reference",
+                    "type": "string"
+                },
+                "amount_payed": {
+                    "description": "Amount Payed",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "response_code": {
+                    "description": "Respose Code",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "response_description": {
+                    "description": "Response Description",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Status Code",
+                    "type": "integer",
+                    "format": "int11"
+                },
+                "product_delivery_status": {
+                    "description": "Delivery Status",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "transaction_date": {
+                    "description": "Transaction Date",
+                    "type": "date",
+                    "format": "yyyy-mm-dd"
+                },
+                "delivery_date": {
+                    "description": "Delivery Date",
+                    "type": "date",
+                    "format": "yyyy-mm-dd"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "role_id": {
+                    "description": "Role Id",
+                    "type": "integer"
+                },
+                "firstname": {
+                    "description": "User Firstname",
+                    "type": "string"
+                },
+                "lastname": {
+                    "description": "User Lastname",
+                    "type": "string"
+                },
+                "phone_number": {
+                    "description": "User Phone Number",
+                    "type": "string",
+                    "format": "080"
+                },
+                "email": {
+                    "description": "User Email",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "User Password",
+                    "type": "string"
+                },
+                "PIN": {
+                    "description": "User PIN",
+                    "type": "string"
+                },
+                "BVN": {
+                    "description": "User BVN",
+                    "type": "string"
+                },
+                "ip_address": {
+                    "description": "User IP Address",
+                    "type": "string"
+                },
+                "device_type": {
+                    "description": "User Device Type",
+                    "type": "string"
+                },
+                "device_version": {
+                    "description": "User Device Version",
+                    "type": "string"
+                },
+                "confirmation_token": {
+                    "description": "User Confirmation Token",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
